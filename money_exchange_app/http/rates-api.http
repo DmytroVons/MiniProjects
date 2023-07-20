@@ -1,0 +1,6 @@
+### GET all rates
+GET http://127.0.0.1:5000/api/rates
+
+
+### GET rates by query
+GET http://127.0.0.1:5000/api/rates?currencyName=UAH&startDate=2022-05-15

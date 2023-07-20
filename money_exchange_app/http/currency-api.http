@@ -1,0 +1,2 @@
+### GET currency by a date
+GET https://currencyapi.net/api/v1/rates?key=B4pLPZEtm7Jq8XUXwjrkUraf0Fqt0hoOfVsj&date=2010-12-25&output=JSON
