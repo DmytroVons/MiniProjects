@@ -3,8 +3,7 @@
 import logging
 from argparse import ArgumentParser
 from datetime import datetime
-from sys import argv
-from typing import Tuple, List, Optional
+from typing import Tuple
 
 from data_conversion import FileConverterFactory
 from data_validator import PersonSchema
@@ -16,8 +15,7 @@ class MyCustomerException(Exception):
     pass
 
 
-# def parse_arguments(argv: List[str]) -> Tuple[str, ...]:
-def parse_arguments(argv: List[str]) -> Tuple[str, str, str, str]:
+def parse_arguments() -> Tuple[str, str, str, str]:
     parser = ArgumentParser(description="Mapping: for the File serialization")
     parser.add_argument("-sf", "--sourceFormat", help="the input file format", required=True, type=str)
     parser.add_argument("-tf", "--targetFormat", help="the output file format", required=True, type=str)
@@ -39,8 +37,6 @@ def read_source_file(file_path: str) -> str:
             return file.read()
     except FileNotFoundError as err:
         logger.error(err)
-        # raise err
-        # raise MyCustomerException() from err
 
 
 def generate_output_filename(file_extension: str) -> str:
@@ -69,7 +65,7 @@ def validate_input_data(data: list, person_schema: PersonSchema) -> None:
 
 
 def main() -> None:
-    source_format, target_format, source_file_path, output_file_path = parse_arguments(argv[1:])
+    source_format, target_format, source_file_path, output_file_path = parse_arguments()
 
     # reads the source file
     source_file_data = read_source_file(source_file_path)
