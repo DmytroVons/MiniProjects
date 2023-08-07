@@ -1,8 +1,9 @@
 import statistics
-from unittest.mock import patch
-import pytest
-from io import StringIO
 import sys
+from io import StringIO
+from unittest.mock import patch
+
+import pytest
 
 from voltage_measurement import VoltageMeasurement
 
