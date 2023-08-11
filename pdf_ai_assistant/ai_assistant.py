@@ -2,25 +2,18 @@ import os
 import pickle
 from typing import List
 
-import unicorn
 from PyPDF2 import PdfReader
 from dotenv import load_dotenv
-from fastapi import FastAPI, Depends
-from fastapi.security.api_key import APIKey
 from langchain import FAISS
 from langchain.chains.question_answering import load_qa_chain
 from langchain.chat_models import ChatOpenAI
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
-import auth
-
 DEFAULT_PDF_FILE_PATH = 'files/my_file.pdf'
 
 # Load environment variables from .env file
 load_dotenv()
-
-app = FastAPI()
 
 
 class NiftyBridgeAIAssistant:
@@ -37,7 +30,7 @@ class NiftyBridgeAIAssistant:
 
         Args:
             chunks (List[str]): List of text chunks.
-            store_name (str): Name of the pickle file for storing embeddings.
+            store_file_path (str): The store file path.
         """
         if os.path.exists(store_file_path):
             with open(store_file_path, "rb") as file:
@@ -107,19 +100,3 @@ class NiftyBridgeAIAssistant:
             if "I don't" in response:
                 response = "I don't know, please contact support by email support@nifty-bridge.com"
             return response
-
-
-@app.post("/api/send")
-def send_message(message: dict, api_key: APIKey = Depends(auth.get_api_key)):
-    # Extract data from the request message
-    query = message.get("message")
-
-    assistant = NiftyBridgeAIAssistant()
-    response = assistant.run(query=query)
-    return {
-        "message": response
-    }
-
-
-if __name__ == "__main__":
-    unicorn.run(app, host="127.0.0.1", port=8000)
