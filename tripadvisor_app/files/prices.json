@@ -1,0 +1,122 @@
+[
+    {
+        "LuxuryCollection": {
+            "provider": "$150",
+            "screenshot": "screenshot_18-19.png"
+        }
+    },
+    {
+        "Expedia.com": {
+            "provider": "$150",
+            "screenshot": "screenshot_18-19.png"
+        }
+    },
+    {
+        "Hotels.com": {
+            "provider": "$150",
+            "screenshot": "screenshot_18-19.png"
+        }
+    },
+    {
+        "Trip.com": {
+            "provider": "$150",
+            "screenshot": "screenshot_18-19.png"
+        }
+    },
+    {
+        "LuxuryCollection": {
+            "provider": "$150",
+            "screenshot": "screenshot_19-20.png"
+        }
+    },
+    {
+        "Expedia.com": {
+            "provider": "$150",
+            "screenshot": "screenshot_19-20.png"
+        }
+    },
+    {
+        "Hotels.com": {
+            "provider": "$150",
+            "screenshot": "screenshot_19-20.png"
+        }
+    },
+    {
+        "Trip.com": {
+            "provider": "$150",
+            "screenshot": "screenshot_19-20.png"
+        }
+    },
+    {
+        "Booking.com": {
+            "provider": "$150",
+            "screenshot": "screenshot_22-23.png"
+        }
+    },
+    {
+        "Expedia.com": {
+            "provider": "$150",
+            "screenshot": "screenshot_22-23.png"
+        }
+    },
+    {
+        "Hotels.com": {
+            "provider": "$150",
+            "screenshot": "screenshot_22-23.png"
+        }
+    },
+    {
+        "travelup.com": {
+            "provider": "$205",
+            "screenshot": "screenshot_22-23.png"
+        }
+    },
+    {
+        "LuxuryCollection": {
+            "provider": "$150",
+            "screenshot": "screenshot_23-24.png"
+        }
+    },
+    {
+        "Expedia.com": {
+            "provider": "$150",
+            "screenshot": "screenshot_23-24.png"
+        }
+    },
+    {
+        "Hotels.com": {
+            "provider": "$150",
+            "screenshot": "screenshot_23-24.png"
+        }
+    },
+    {
+        "travelup.com": {
+            "provider": "$195",
+            "screenshot": "screenshot_23-24.png"
+        }
+    },
+    {
+        "Booking.com": {
+            "provider": "$150",
+            "screenshot": "screenshot_28-29.png"
+        }
+    },
+    {
+        "Vio.com": {
+            "provider": "$144",
+            "screenshot": "screenshot_28-29.png"
+        }
+    },
+    {
+        "Expedia.com": {
+            "provider": "$150",
+            "screenshot": "screenshot_28-29.png"
+        }
+    },
+    {
+        "Hotels.com": {
+            "provider": "$150",
+            "screenshot": "screenshot_28-29.png"
+        }
+    }
+]
