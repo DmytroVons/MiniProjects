@@ -22,3 +22,4 @@ def send_message(message: dict, api_key: APIKey = Depends(auth.get_api_key)):
 
 if __name__ == "__main__":
     uvicorn.run(app, host="127.0.0.1", port=8000)
+dasd
