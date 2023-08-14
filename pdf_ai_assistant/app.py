@@ -1,4 +1,4 @@
-import unicorn
+import uvicorn
 from fastapi import FastAPI, Depends
 from fastapi.security.api_key import APIKey
 
@@ -21,4 +21,4 @@ def send_message(message: dict, api_key: APIKey = Depends(auth.get_api_key)):
 
 
 if __name__ == "__main__":
-    unicorn.run(app, host="127.0.0.1", port=8000)
+    uvicorn.run(app, host="127.0.0.1", port=8000)

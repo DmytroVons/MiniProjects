@@ -39,7 +39,7 @@ Follow these steps to run the application:
 2. Start the FastAPI application using the following command:
 
 ```bash
-uvicorn app:app --reload
+uvicorn app:app --host 127.0.0.1 --port 8000
 ```
 
 The application will be accessible at http://127.0.0.1:8000
