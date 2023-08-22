@@ -97,6 +97,4 @@ class NiftyBridgeAIAssistant:
             prompt = f"User: {query}\nNiftyBridge AI assistant:"
             chain = load_qa_chain(llm=turbo_llm, chain_type="stuff")
             response = chain.run(input_documents=docs, question=prompt)
-            if "I don't" in response:
-                response = "I don't know, please contact support by email support@nifty-bridge.com"
             return response
