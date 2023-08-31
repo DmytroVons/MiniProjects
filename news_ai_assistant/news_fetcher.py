@@ -7,6 +7,7 @@ from typing import List, Dict
 import requests
 from dotenv import load_dotenv
 
+# Load environment variables from .env file
 load_dotenv()
 
 EXCLUDE_WORDS_PATTERN = r"\b(cookies|javascript|ad blocker)\b"
@@ -73,15 +74,17 @@ class NewsFetcher:
         """
         articles_list = []
         config = self.read_config_file()
-        articles = self.news_api.get_articles(config=config)
-        if articles:
-            for article in articles:
-                published_timestamp = datetime.utcfromtimestamp(article.get("publishedTimestamp"))
-                if published_timestamp.date() == date.today():
-                    if not article.get('hasBody') or search(EXCLUDE_WORDS_PATTERN, article.get('body').lower()):
-                        articles_list.append(article.get('title').replace('\n', ''))
-                    else:
-                        articles_list.append(article.get('body').replace('\n', ''))
+
+        for page in range(config.get("page", 1)):
+            articles = self.news_api.get_articles(config=config, page=page)
+            if articles:
+                for article in articles:
+                    published_timestamp = datetime.utcfromtimestamp(article.get("publishedTimestamp"))
+                    if published_timestamp.date() == date.today():
+                        if not article.get('hasBody') or search(EXCLUDE_WORDS_PATTERN, article.get('body').lower()):
+                            articles_list.append(article.get('title').replace('\n', ''))
+                        else:
+                            articles_list.append(article.get('body').replace('\n', ''))
         return articles_list
 
     @staticmethod
