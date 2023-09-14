@@ -74,9 +74,8 @@ class NewsFetcher:
         """
         articles_list = []
         config = self.read_config_file()
-
         for page in range(config.get("page", 1)):
-            articles = self.news_api.get_articles(config=config, page=page)
+            articles = self.news_api.get_articles(config=config, page=page+1)
             if articles:
                 for article in articles:
                     published_timestamp = datetime.utcfromtimestamp(article.get("publishedTimestamp"))
