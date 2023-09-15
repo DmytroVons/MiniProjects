@@ -9,15 +9,18 @@ load_dotenv()
 
 
 def main():
-    ai_response_result = ""
     news_fetcher = NewsFetcher()
-    articles = news_fetcher.form_articles()
+    news_fetcher.form_articles()
     st.header("News AI Assistant")
     news_ai_assistant = NewsAIAssistant()
-    for news in articles:
-        ai_response = news_ai_assistant.run(news)
-        ai_response_result += f"{ai_response}\n\n"
-    st.write(ai_response_result)
+    ai_response = news_ai_assistant.run()
+    st.write(ai_response)
+
+    query = st.text_input("Please ask question about the recent news described above:")
+
+    if query:
+        question_response = news_ai_assistant.customer_questions(query)
+        st.write(question_response)
 
 
 if __name__ == '__main__':

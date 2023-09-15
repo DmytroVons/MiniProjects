@@ -6,11 +6,14 @@ from typing import List, Dict
 
 import requests
 from dotenv import load_dotenv
+from fpdf import FPDF
 
 # Load environment variables from .env file
 load_dotenv()
 
 EXCLUDE_WORDS_PATTERN = r"\b(cookies|javascript|ad blocker)\b"
+DEFAULT_FILE_PATH = 'files'
+DEFAULT_NEWS_FILENAME = 'news.pdf'
 
 
 class NewsAPI:
@@ -75,7 +78,7 @@ class NewsFetcher:
         articles_list = []
         config = self.read_config_file()
         for page in range(config.get("page", 1)):
-            articles = self.news_api.get_articles(config=config, page=page+1)
+            articles = self.news_api.get_articles(config=config, page=page + 1)
             if articles:
                 for article in articles:
                     published_timestamp = datetime.utcfromtimestamp(article.get("publishedTimestamp"))
@@ -84,7 +87,25 @@ class NewsFetcher:
                             articles_list.append(article.get('title').replace('\n', ''))
                         else:
                             articles_list.append(article.get('body').replace('\n', ''))
+        self.create_pdf_file(articles_list)
         return articles_list
+
+    @staticmethod
+    def create_pdf_file(text_list: list) -> None:
+        pdf = FPDF()
+        pdf.add_page()
+        news_number = 0
+        for text in text_list:
+            news_number += 1
+            text = f"News {news_number}: {text}"
+            if len(text) <= 20:
+                pdf.set_font(family='arial', size=18)
+                pdf.cell(w=200, h=10, txt=f'\t{text}\n\n', ln=1, align='C')
+            else:
+                pdf.set_font(family='arial', size=14)
+                pdf.multi_cell(w=0, h=10, txt=f'\t{text.encode("utf-8")}\n\n', align='L')
+        news_file_path = path.join(DEFAULT_FILE_PATH, DEFAULT_NEWS_FILENAME)
+        pdf.output(news_file_path)
 
     @staticmethod
     def read_config_file(filename: str = "config.json", filepath: str = ".") -> Dict:
